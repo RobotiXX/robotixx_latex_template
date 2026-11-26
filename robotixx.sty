@@ -1,0 +1,277 @@
+% ---------------------------------------------------------------
+%
+%  RobotiXX Lab — Modern Two-Column Paper Template
+%  Department of Computer Science, George Mason University
+%  https://robotixx.cs.gmu.edu/
+%
+%  Brand Palette (https://brand.gmu.edu/):
+%    - Mason Green:  #005239
+%    - Mason Gold:   #FFC733
+%    - Logo Black:   #333333
+%    - Accent Teal:  #008285
+%    - Accent Red:   #CC4824
+%
+% ---------------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesPackage{robotixx}[2026/11/26 RobotiXX Lab Modern Paper Template]
+
+% ===================================================================
+%  PACKAGE OPTIONS
+% ===================================================================
+\newif\if@robotixxsans\@robotixxsansfalse
+\DeclareOption{sans}{\@robotixxsanstrue}
+\newif\if@robotixxtimes\@robotixxtimesfalse
+\DeclareOption{times}{\@robotixxtimestrue}
+\DeclareOption{garamond}{\@robotixxtimesfalse}
+\newif\if@robotixxfinal\@robotixxfinalfalse
+\DeclareOption{final}{\@robotixxfinaltrue}
+\DeclareOption{preprint}{\@robotixxfinalfalse}
+\ProcessOptions\relax
+
+% ===================================================================
+%  CORE PACKAGES & GEOMETRY
+% ===================================================================
+\RequirePackage[
+    letterpaper,
+    top=0.72in,
+    bottom=0.75in,
+    left=0.65in,
+    right=0.65in,
+    columnsep=0.24in,
+    headheight=20pt,
+    headsep=12pt,
+    footskip=22pt
+]{geometry}
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{amsmath,amssymb,amsfonts,mathtools,amsthm}
+\RequirePackage{microtype}
+\RequirePackage{setspace}
+\RequirePackage{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage{caption}
+\RequirePackage{subcaption}
+\RequirePackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\RequirePackage{fontawesome5}
+\RequirePackage[authoryear,round]{natbib}
+\RequirePackage{robotixxabbrv}
+
+% ===================================================================
+%  GMU & ROBOTIX BRAND COLORS (https://brand.gmu.edu/)
+% ===================================================================
+\definecolor{gmugreen}{HTML}{005239}       % Official George Mason Green
+\definecolor{gmugold}{HTML}{FFC733}        % Official George Mason Gold
+\definecolor{gmudark}{HTML}{333333}        % Official Logo Black / Neutral
+\definecolor{gmuteal}{HTML}{008285}        % Official Accent Teal
+\definecolor{gmured}{HTML}{CC4824}         % Official Accent Red
+
+% Modern UI neutrals harmonized with Mason Green
+\definecolor{robotixxink}{HTML}{1A2020}    % High-contrast body text
+\definecolor{robotixxmuted}{HTML}{52605C}  % Muted metadata & headers
+\definecolor{robotixxbg}{HTML}{ECEFEE}     % Soft darker gray for borderless abstract card
+\definecolor{robotixxborder}{HTML}{D2DFDA} % Subtle divider rule
+
+% ===================================================================
+%  TYPOGRAPHY (EB Garamond text + Times math by default; [times] or [sans] optional)
+% ===================================================================
+\if@robotixxsans
+    % Optional all-sans mode using Inter
+    \RequirePackage[sfdefault,scaled=0.94]{inter}
+    \RequirePackage{newtxmath}
+\else
+    \if@robotixxtimes
+        % Optional ICML-style Times text + math
+        \RequirePackage{newtxtext}
+        \RequirePackage{newtxmath}
+    \else
+        % Default: EB Garamond text + crisp Times (newtxmath) math
+        \RequirePackage[lining,scaled=1.04]{ebgaramond}
+        \RequirePackage{newtxmath}
+    \fi
+\fi
+% Inconsolata for clean monospace code & URLs
+\RequirePackage[scaled=0.95]{inconsolata}
+
+% Comfortable paragraph spacing and line leading
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4.5pt}
+\linespread{1.05}
+\color{robotixxink}
+
+% ===================================================================
+%  SECTION HEADINGS & CAPTIONS
+% ===================================================================
+\titleformat{\section}
+    {\large\bfseries\color{gmugreen}}
+    {\thesection}
+    {0.6em}
+    {}
+\titlespacing*{\section}{0pt}{13pt plus 3pt minus 2pt}{5pt plus 1pt minus 1pt}
+
+\titleformat{\subsection}
+    {\normalsize\bfseries\color{robotixxink}}
+    {\thesubsection}
+    {0.55em}
+    {}
+\titlespacing*{\subsection}{0pt}{9pt plus 2pt minus 1pt}{3pt plus 1pt minus 1pt}
+
+\titleformat{\subsubsection}
+    {\small\bfseries\color{robotixxmuted}}
+    {\thesubsubsection}
+    {0.5em}
+    {}
+\titlespacing*{\subsubsection}{0pt}{7pt plus 1pt minus 1pt}{2pt plus 1pt}
+
+\captionsetup{
+    font={small},
+    labelfont={bf,color=gmugreen},
+    textfont={color=gmudark},
+    labelsep=period,
+    skip=6pt
+}
+\captionsetup[sub]{
+    font={footnotesize},
+    labelfont={bf,color=gmugreen}
+}
+
+% ===================================================================
+%  METADATA MACROS
+% ===================================================================
+\newcommand{\@robotixxtitle}{Untitled RobotiXX Paper}
+\newcommand{\@robotixxrunningtitle}{}
+\newcommand{\@robotixxauthors}{}
+\newcommand{\@robotixxaffiliations}{}
+\newcommand{\@robotixxmeta}{}
+\newcommand{\@robotixxkeywords}{}
+\newcommand{\@robotixxabstract}{}
+\newcommand{\@robotixxdate}{\today}
+\newcommand{\@robotixxlogo}{RobotiXX_gmu.png}
+
+\newcommand{\robotixxtitle}[1]{\gdef\@robotixxtitle{#1}}
+\newcommand{\robotixxrunningtitle}[1]{\gdef\@robotixxrunningtitle{#1}}
+\newcommand{\robotixxauthors}[1]{\gdef\@robotixxauthors{#1}}
+\newcommand{\robotixxaffiliations}[1]{\gdef\@robotixxaffiliations{#1}}
+\newcommand{\robotixxmeta}[1]{\gdef\@robotixxmeta{#1}}
+\newcommand{\robotixxkeywords}[1]{\gdef\@robotixxkeywords{#1}}
+\newcommand{\robotixxabstract}[1]{\gdef\@robotixxabstract{#1}}
+\newcommand{\robotixxdate}[1]{\gdef\@robotixxdate{#1}}
+\newcommand{\robotixxlogo}[1]{\gdef\@robotixxlogo{#1}}
+
+% ===================================================================
+%  HEADERS & FOOTERS
+% ===================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{robotixxborder}\leaders\hrule height \headrulewidth\hfill}}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancyhead[L]{\footnotesize\color{robotixxmuted}%
+    \ifx\@robotixxrunningtitle\@empty\@robotixxtitle\else\@robotixxrunningtitle\fi}
+\fancyhead[R]{\footnotesize\color{gmugreen}\textbf{RobotiXX Lab} \textcolor{robotixxmuted}{\textbar\ GMU}}
+\fancyfoot[L]{%
+    \IfFileExists{\@robotixxlogo}{%
+        \href{https://robotixx.cs.gmu.edu/}{\includegraphics[height=0.35cm]{\@robotixxlogo}}%
+    }{%
+        \footnotesize\color{robotixxmuted}\href{https://robotixx.cs.gmu.edu/}{robotixx.cs.gmu.edu}%
+    }%
+}
+\fancyfoot[R]{\footnotesize\color{robotixxmuted}\thepage}
+
+\fancypagestyle{robotixxfirst}{%
+    \fancyhf{}%
+    \renewcommand{\headrulewidth}{0pt}%
+    \renewcommand{\footrulewidth}{0pt}%
+    \fancyfoot[R]{\footnotesize\color{robotixxmuted}\thepage}%
+}
+
+% ===================================================================
+%  META-STYLE ABSTRACT BOX & TITLE HEADER (\maketop)
+% ===================================================================
+\newtcolorbox{@robotixxabstractbox}{%
+    enhanced,
+    colback=robotixxbg,
+    frame hidden,
+    boxrule=0pt,
+    arc=6pt,
+    left=14pt,
+    right=14pt,
+    top=11pt,
+    bottom=11pt
+}
+
+\newcommand{\maketop}{%
+    \twocolumn[{%
+        \begin{@twocolumnfalse}
+            \thispagestyle{robotixxfirst}%
+            % --- Top Branding Bar ---
+            \noindent
+            \begin{minipage}[c]{0.42\textwidth}
+                \IfFileExists{\@robotixxlogo}{%
+                    \href{https://robotixx.cs.gmu.edu/}{\includegraphics[height=0.82cm]{\@robotixxlogo}}%
+                }{%
+                    {\Large\bfseries\color{gmugreen}Roboti\textcolor{gmugold}{XX}}%
+                }%
+            \end{minipage}%
+            \hfill%
+            \begin{minipage}[c]{0.55\textwidth}
+                \raggedleft\footnotesize\color{robotixxmuted}%
+                \textbf{\color{gmugreen}RobotiXX Lab} \;\textbar\; Department of Computer Science\\
+                George Mason University \;\textbar\; \href{https://robotixx.cs.gmu.edu/}{\color{gmuteal}robotixx.cs.gmu.edu}%
+                \if@robotixxfinal\else\;\textbar\; \@robotixxdate\fi
+            \end{minipage}%
+            \par\vspace{6pt}%
+            % --- GMU Green & Gold Brand Rule ---
+            \noindent{\color{gmugreen}\rule{0.82\textwidth}{1.6pt}}{\color{gmugold}\rule{0.18\textwidth}{1.6pt}}%
+            \par\vspace{12pt}%
+            % --- Paper Title ---
+            {\raggedright\bfseries\fontsize{17.5}{21.5}\selectfont\color{robotixxink}\@robotixxtitle\par}%
+            \vspace{9pt}%
+            % --- Authors ---
+            \ifx\@robotixxauthors\@empty\else
+                {\raggedright\normalsize\color{gmudark}\@robotixxauthors\par}%
+                \vspace{4pt}%
+            \fi
+            % --- Affiliations ---
+            \ifx\@robotixxaffiliations\@empty\else
+                {\raggedright\small\color{robotixxmuted}\@robotixxaffiliations\par}%
+                \vspace{3pt}%
+            \fi
+            % --- Metadata (email, code, project page) ---
+            \ifx\@robotixxmeta\@empty\else
+                {\raggedright\footnotesize\color{robotixxmuted}\@robotixxmeta\par}%
+            \fi
+            \vspace{10pt}%
+            % --- Meta-style Abstract Box ---
+            \begin{@robotixxabstractbox}
+                {\bfseries\small\color{gmugreen}Abstract}\par\vspace{3pt}%
+                {\small\setstretch{1.18}\color{robotixxink}\@robotixxabstract\par}%
+                \ifx\@robotixxkeywords\@empty\else
+                    \vspace{6pt}%
+                    {\color{robotixxborder}\hrule height 0.4pt}%
+                    \vspace{5pt}%
+                    {\footnotesize\color{robotixxmuted}\textbf{\color{gmugreen}Keywords:} \@robotixxkeywords\par}%
+                \fi
+            \end{@robotixxabstractbox}
+            \vspace{14pt}%
+        \end{@twocolumnfalse}
+    }]%
+}
+
+% ===================================================================
+%  HYPERREF & CLEVEREF (loaded last for clean interaction)
+% ===================================================================
+\RequirePackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=gmugreen,
+    citecolor=gmuteal,
+    urlcolor=gmugreen,
+    pdfborder={0 0 0}
+}
+\RequirePackage[capitalize,noabbrev]{cleveref}

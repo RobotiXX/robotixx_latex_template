@@ -1,0 +1,34 @@
+% ---------------------------------------------------------------
+%
+%  RobotiXX Lab — Standard Abbreviations Package
+%  George Mason University (https://robotixx.cs.gmu.edu/)
+%
+%  Adapted from standard CVPR/ECCV abbreviation conventions.
+%  Automatically adds a trailing period (unless already followed
+%  by one) and smart spacing via \xspace.
+%
+% ---------------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+\ProvidesPackage{robotixxabbrv}[2026/11/26 Common abbreviations for RobotiXX papers]
+
+\RequirePackage{xspace}
+\makeatletter
+\DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
+\def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
+
+\def\eg{\emph{e.g}\onedot}
+\def\Eg{\emph{E.g}\onedot}
+\def\ie{\emph{i.e}\onedot}
+\def\Ie{\emph{I.e}\onedot}
+\def\cf{\emph{cf}\onedot}
+\def\Cf{\emph{Cf}\onedot}
+\def\etc{\emph{etc}\onedot}
+\def\vs{\emph{vs}\onedot}
+\def\wrt{w.r.t\onedot}
+\def\dof{d.o.f\onedot}
+\def\iid{i.i.d\onedot}
+\def\wolog{w.l.o.g\onedot}
+\def\aka{a.k.a\onedot}
+\def\etal{\emph{et al}\onedot}
+\makeatother

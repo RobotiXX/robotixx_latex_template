@@ -1,0 +1,61 @@
+\section{Formatting Guidelines}
+\label{sec:formatting}
+
+This section illustrates standard elements commonly used in robotics and machine learning papers, including equations, figures, tables, and theoretical statements.
+
+\subsection{Mathematics and Theorems}
+
+Inline mathematics such as $x_t \in \mathbb{R}^d$ and $u_t \in \mathcal{U}$ should be typeset within single dollar signs. Important displayed equations should be numbered using the \texttt{equation} environment:
+\begin{equation}
+    x_{t+1} = f(x_t, u_t) + \varepsilon_t, \qquad \varepsilon_t \sim \mathcal{N}(0, \Sigma).
+    \label{eq:dynamics}
+\end{equation}
+Longer derivations can use \texttt{align} or \texttt{align*}. Theorem-like environments (\texttt{theorem}, \texttt{proposition}, \texttt{lemma}, \texttt{definition}, \texttt{remark}) are pre-configured in \texttt{preamble.tex}.
+
+\begin{proposition}[Sample Stability Property]
+\label{prop:sample}
+Let $V : \mathcal{X} \to \mathbb{R}_{\ge 0}$ be a continuously differentiable Lyapunov candidate along trajectories of \cref{eq:dynamics} with $\varepsilon_t = 0$. If $V(x_{t+1}) - V(x_t) \le -\alpha \|x_t\|_2^2$ for some $\alpha > 0$, then the origin is asymptotically stable.
+\end{proposition}
+
+\subsection{Figures and Tables}
+
+Figures should be crisp vector graphics (\texttt{.pdf}) or high-resolution raster images (\texttt{.png}) placed at the top or bottom of columns using \texttt{[t]} or \texttt{[b]}. Multi-column figures and tables use the starred environments \texttt{figure*} and \texttt{table*}. An example single-column figure is shown in \cref{fig:example}, and a sample \texttt{booktabs} table is shown in \cref{tab:example}.
+
+\begin{figure}[t]
+    \centering
+    \begin{tcolorbox}[
+        colback=robotixxbg,
+        colframe=robotixxborder,
+        arc=4pt,
+        boxrule=0.6pt,
+        left=10pt,
+        right=10pt,
+        top=12pt,
+        bottom=12pt,
+        halign=center
+    ]
+        \includegraphics[width=0.72\linewidth]{RobotiXX_gmu.png}
+    \end{tcolorbox}
+    \caption{Example figure container. Replace with your own PDF or PNG figure.}
+    \label{fig:example}
+\end{figure}
+
+\begin{table}[t]
+    \centering
+    \caption{Sample quantitative comparison formatted with \texttt{booktabs}. Highlight best results in \textbf{bold} and use \texttt{gmugreen} sparingly for emphasis.}
+    \label{tab:example}
+    \small
+    \begin{tabular}{lccc}
+        \toprule
+        \textbf{Method} & \textbf{Success (\%)} & \textbf{Path Len. (m)} & \textbf{Time (ms)} \\
+        \midrule
+        Baseline A      & 78.4 $\pm$ 2.1        & 14.8                   & 18.2 \\
+        Baseline B      & 84.1 $\pm$ 1.7        & 13.5                   & 24.6 \\
+        \textbf{Ours}   & \textbf{95.6 $\pm$ 0.9} & \textbf{12.1}        & \textbf{11.4} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Brand Colors}
+
+Official George Mason University brand colors are defined in \texttt{robotixx.sty} and can be used directly in TikZ figures, tables, or callouts: \textcolor{gmugreen}{\textbf{gmugreen}} (\texttt{\#005239}), \textcolor{gmugold}{\textbf{gmugold}} (\texttt{\#FFC733}), \textcolor{gmuteal}{\textbf{gmuteal}} (\texttt{\#008285}), and \textcolor{gmured}{\textbf{gmured}} (\texttt{\#CC4824}).

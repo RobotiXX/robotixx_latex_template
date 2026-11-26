@@ -1,0 +1,54 @@
+\documentclass{article}
+
+% ===================================================================
+%  ROBOTIXX TEMPLATE & DOCUMENT ESSENTIALS
+% ===================================================================
+% Hyperref and algorithmic interaction
+\providecommand{\theHalgorithm}{\arabic{algorithm}}
+
+% RobotiXX two-column template
+% Default: EB Garamond text + Times math
+% Optional: [times] for Times text+math, [sans] for Inter, [final] to hide date
+\usepackage{robotixx}
+
+% Standard academic packages
+\usepackage{enumitem}
+\usepackage{amsthm}
+\usepackage[section]{placeins}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{colortbl}
+\usepackage{adjustbox}
+\usepackage{algorithmic}
+\usepackage{nicefrac}
+
+% Float placement parameters
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\dbltopfraction}{0.95}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.8}
+\renewcommand{\dblfloatpagefraction}{0.8}
+\setcounter{topnumber}{4}
+\setcounter{bottomnumber}{4}
+\setcounter{totalnumber}{6}
+\setcounter{dbltopnumber}{4}
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\setlength{\dbltextfloatsep}{9pt plus 2pt minus 2pt}
+\setlength{\dblfloatsep}{8pt plus 2pt minus 2pt}
+
+% ===================================================================
+%  THEOREMS & ENVIRONMENTS
+% ===================================================================
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}

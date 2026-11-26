@@ -1,0 +1,13 @@
+\section{Introduction}
+\label{sec:intro}
+
+This template is designed for preprints, technical reports, and workshop or conference drafts produced by the RobotiXX Lab at George Mason University (\url{https://robotixx.cs.gmu.edu/}).
+
+\paragraph{General Usage.}
+To start a new paper, copy this directory, update the metadata block in \texttt{main.tex} (\ie, the title, authors, affiliations, correspondence links, and keywords), and organize your manuscript into modular files under \texttt{sections/}. Calling \texttt{\textbackslash maketop} immediately after \texttt{\textbackslash begin\{document\}} renders the branded header bar, title, author block, and abstract card across both columns.
+
+\paragraph{Citations and Abbreviations.}
+Bibliographic references are managed with \texttt{natbib} using author-year citations. Use \texttt{\textbackslash citet\{key\}} for textual citations---\eg, \citet{xiao2022motion}---and \texttt{\textbackslash citep\{key\}} for parenthetical citations~\citep{vaswani2017attention,lynch2017modern}. Standard abbreviations from \texttt{robotixxabbrv.sty} (\eg, \texttt{\textbackslash eg}, \texttt{\textbackslash ie}, \texttt{\textbackslash cf}, \texttt{\textbackslash wrt}, \texttt{\textbackslash etal}, \texttt{\textbackslash etc}) are loaded automatically and handle trailing periods and spacing via \texttt{\textbackslash xspace}.
+
+\paragraph{Cross-References.}
+Use \texttt{\textbackslash cref\{label\}} from \texttt{cleveref} to reference sections, figures, tables, and equations consistently (\eg, \cref{sec:formatting}, \cref{fig:example}, \cref{tab:example}, and \cref{eq:dynamics}).
