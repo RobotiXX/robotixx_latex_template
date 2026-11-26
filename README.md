@@ -7,8 +7,7 @@ A modern, screen-friendly, two-column LaTeX template for papers and technical re
 - **Modern Two-Column Layout:** Clean `letterpaper` geometry with generous margins and balanced column spacing.
 - **Readable Typography:** Uses **EB Garamond** (lining figures) for warm, refined prose and headings paired with crisp **Times (`newtxmath`)** for math formulas and **Inconsolata** for monospace (optional `[times]` and `[sans]` modes are also supported).
 - **GMU & RobotiXX Branding:** Incorporates the official [George Mason University brand palette](https://brand.gmu.edu/) (Mason Green `#005239`, Mason Gold `#FFC733`, Accent Teal `#008285`, Accent Red `#CC4824`) and the RobotiXX Lab header banner.
-- **Meta-Style Abstract Box:** Borderless, soft-gray rounded abstract card (`#ECEFEE`) with an optional `Keywords:` footer.
-- **Standard Abbreviations:** Includes `robotixxabbrv.sty` (modeled after `eccvabbrv.sty`) for smart-spaced abbreviations (`\eg`, `\ie`, `\etal`, `\wrt`, `\cf`, `\aka`, etc.).
+- **Standard Abbreviations:** Includes `robotixxabbrv.sty` for smart-spaced abbreviations (`\eg`, `\ie`, `\etal`, `\wrt`, `\cf`, `\aka`, etc.).
 
 ---
 
@@ -19,7 +18,6 @@ A modern, screen-friendly, two-column LaTeX template for papers and technical re
 ├── robotixx.sty          # Core RobotiXX template package
 ├── robotixxabbrv.sty     # Standard abbreviations package (loaded automatically)
 ├── RobotiXX_gmu.png      # RobotiXX logo (used by pdflatex)
-├── RobotiXX_gmu.svg      # RobotiXX logo (vector/SVG source)
 ├── preamble.tex          # Document class, template import, and paper-specific packages
 ├── main.tex              # Main entry point (metadata, abstract, sections, bibliography)
 ├── main.bib              # BibTeX references
@@ -90,7 +88,7 @@ In `main.tex`, set your paper details before `\begin{document}` and call `\maket
 In `preamble.tex`, you can pass options to `\usepackage{robotixx}`:
 
 - `\usepackage{robotixx}` — Default mode (EB Garamond text/headings, Times math, preprint date in header).
-- `\usepackage[times]{robotixx}` — Classic ICML-style Times (`newtxtext` + `newtxmath`) for both text and math.
+- `\usepackage[times]{robotixx}` — Classic Times (`newtxtext` + `newtxmath`) for both text and math.
 - `\usepackage[sans]{robotixx}` — All-sans-serif body mode using Inter.
 - `\usepackage[final]{robotixx}` — Hides the date from the top-right header bar.
 - Customize the date directly via `\robotixxdate{January 2026}`.
